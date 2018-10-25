@@ -12,8 +12,9 @@ go func(...)
 func main() {
 	go say("Hello Goroutines")
 	//sleep for waiting say func execution finish
-	time.Sleep(2 * time.Second)
-	fmt.Println("Main func is done")
+	//time.Sleep(1 * time.Second)
+	//fmt.Println("Main func is done")
+	say("hello")
 }
 
 func say(s string) {
