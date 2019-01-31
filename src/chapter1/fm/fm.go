@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/urfave/cli"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -34,5 +36,21 @@ func main() {
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+func search(name string) {
+	fmt.Println("searching movie with name:", name)
+	respone, err := http.Get("http://www.btbtdy.net/search/江湖儿女.html")
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		for {
+			buf := make([]byte, 1024)
+			_, err = respone.Body.Read(buf)
+			if err == nil {
+				fmt.Printf("%q", buf)
+			}
+		}
 	}
 }
